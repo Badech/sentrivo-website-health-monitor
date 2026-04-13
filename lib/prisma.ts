@@ -1,6 +1,10 @@
 import { PrismaClient } from '@prisma/client';
+import { Pool, neonConfig } from '@neondatabase/serverless';
 import { PrismaNeon } from '@prisma/adapter-neon';
-import { Pool } from '@neondatabase/serverless';
+import ws from 'ws';
+
+// Configure WebSocket for local development
+neonConfig.webSocketConstructor = ws;
 
 // Prevent multiple instances of Prisma Client in development
 const globalForPrisma = globalThis as unknown as {
@@ -21,8 +25,7 @@ function createPrismaClient() {
   
   // At runtime with DATABASE_URL, use Neon adapter for connection pooling
   console.log('[Prisma] Using Neon adapter with connection pooling');
-  const pool = new Pool({ connectionString });
-  const adapter = new PrismaNeon(pool);
+  const adapter = new PrismaNeon({ connectionString });
   
   return new PrismaClient({
     adapter,
