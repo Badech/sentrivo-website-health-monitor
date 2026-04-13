@@ -1,8 +1,18 @@
 /**
- * Scanning module - Handles scan execution and report generation
- * Currently uses demo/sample data; will be replaced with real scanning in future
+ * Scanning module - Real and demo scanning capabilities
  */
 
+// Demo scanning (for marketing/demo purposes)
 export * from './issueCatalog';
 export * from './runDemoScan';
+
+// Real scanning (production monitoring)
+export * from './crawlSite';
+export * from './browserChecks';
+export * from './pageSpeedIntegration';
+export * from './integrations';
+export * from './issueBuilder';
+export * from './runRealScan';
+
+// Reports
 export * from './reportBuilder';

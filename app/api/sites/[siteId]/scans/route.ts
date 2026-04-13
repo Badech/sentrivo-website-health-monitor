@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getScansBySite, createScan } from '@/lib/data';
+import { queueDemoScan, queueRealScan } from '@/lib/scanning';
 import { z } from 'zod';
 
 // GET /api/sites/[siteId]/scans - Get scan history
@@ -50,15 +51,23 @@ export async function POST(
       status: 'QUEUED',
     });
 
-    // Trigger scan execution
+    // Trigger scan execution based on source type
     if (validatedData.source === 'DEMO') {
-      const { runDemoScan } = await import('@/lib/scanning');
-      // Run demo scan in background
-      runDemoScan(scan.id).catch((error) => {
+      // Run demo scan (for testing/marketing)
+      queueDemoScan(siteId).catch((error) => {
         console.error('Demo scan execution failed:', error);
       });
+    } else {
+      // Run real scan (production monitoring with Playwright + APIs)
+      queueRealScan(siteId, {
+        maxPages: 50,
+        includePageSpeed: true,
+        includeSearchConsole: false, // Enable when OAuth is set up
+        includeGA4: false, // Enable when OAuth is set up
+      }).catch((error) => {
+        console.error('Real scan execution failed:', error);
+      });
     }
-    // TODO: For LIVE scans, queue to job system (future enhancement)
 
     return NextResponse.json({ scan }, { status: 201 });
   } catch (error) {
