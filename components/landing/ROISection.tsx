@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { TrendingDown, Clock, ShieldCheck, DollarSign } from "lucide-react";
 
 const values = [
-  { icon: TrendingDown, title: "Reduce Missed Leads", description: "Catch broken forms and dead CTAs before they silently cost you conversions.", metric: "37%", metricLabel: "fewer missed leads on average" },
-  { icon: Clock, title: "Catch Issues Early", description: "Daily scans mean you find problems in hours, not weeks.", metric: "24h", metricLabel: "average detection time" },
-  { icon: ShieldCheck, title: "Improve Conversion Rate", description: "Fix the UX issues that directly impact visitor-to-lead performance.", metric: "2.4x", metricLabel: "faster issue resolution" },
-  { icon: DollarSign, title: "Protect Ad Spend", description: "Stop sending paid traffic to broken pages. Every click should count.", metric: "91%", metricLabel: "ad landing page coverage" },
+  { icon: TrendingDown, title: "Reduce Missed Leads", description: "Catch broken forms and dead CTAs before they silently cost you conversions.", metric: "Sample", metricLabel: "37% fewer missed leads" },
+  { icon: Clock, title: "Catch Issues Early", description: "Daily scans mean you find problems in hours, not weeks.", metric: "~24h", metricLabel: "typical detection time" },
+  { icon: ShieldCheck, title: "Improve Client Retention", description: "Proactively fix UX issues before clients notice the problem.", metric: "Sample", metricLabel: "2.4x faster fixes" },
+  { icon: DollarSign, title: "Protect Ad Spend", description: "Stop sending paid traffic to broken pages. Every click should count.", metric: "Sample", metricLabel: "full coverage" },
 ];
 
 export function ROISection() {
@@ -22,8 +22,11 @@ export function ROISection() {
         >
           <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-3 block">Impact</span>
           <h2 className="text-3xl lg:text-5xl font-extrabold text-foreground mb-4">
-            The ROI of website monitoring
+            Why agencies choose Sentrivo
           </h2>
+          <p className="text-muted-foreground text-base max-w-2xl mx-auto">
+            Sample impact metrics from early agency partners
+          </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">

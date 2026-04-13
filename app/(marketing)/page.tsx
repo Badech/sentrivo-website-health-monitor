@@ -4,6 +4,7 @@ import { TrustStrip } from '@/components/landing/TrustStrip';
 import { ProblemSection } from '@/components/landing/ProblemSection';
 import { HowItWorksSection } from '@/components/landing/HowItWorksSection';
 import { FeaturesSection } from '@/components/landing/FeaturesSection';
+import { ComparisonSection } from '@/components/landing/ComparisonSection';
 import { DashboardShowcase } from '@/components/landing/DashboardShowcase';
 import { ROISection } from '@/components/landing/ROISection';
 import { UseCasesSection } from '@/components/landing/UseCasesSection';
@@ -21,6 +22,7 @@ export default function LandingPage() {
       <ProblemSection />
       <HowItWorksSection />
       <FeaturesSection />
+      <ComparisonSection />
       <DashboardShowcase />
       <ROISection />
       <UseCasesSection />

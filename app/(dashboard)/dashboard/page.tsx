@@ -26,14 +26,29 @@ export default function DashboardOverview() {
   return (
     <>
       <AppTopbar title="Dashboard" />
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 p-6 overflow-auto bg-muted/30">
         <div className="max-w-7xl mx-auto space-y-6">
+          {/* Context Bar */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">acme-corp.com</h1>
+              <p className="text-sm text-muted-foreground">Last scan: 32 minutes ago • Health Score: 87/100</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Change site
+              </button>
+            </div>
+          </div>
           {/* Score cards row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Health Score */}
             <div className="p-6 rounded-xl border border-border bg-card shadow-card">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-foreground">Website Health</h3>
+                <div>
+                  <h3 className="text-sm font-semibold text-foreground">Website Health</h3>
+                  <p className="text-xs text-muted-foreground">vs last week: -5 points</p>
+                </div>
                 <StatusPill status="healthy" />
               </div>
               <div className="flex items-center gap-6">
@@ -56,9 +71,12 @@ export default function DashboardOverview() {
             </div>
 
             {/* Lead Risk */}
-            <div className="p-6 rounded-xl border border-border bg-card shadow-card">
+            <div className="p-6 rounded-xl border border-warning/20 bg-warning/5 shadow-card">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-foreground">Lead Risk Score</h3>
+                <div>
+                  <h3 className="text-sm font-semibold text-foreground">Lead Risk Score</h3>
+                  <p className="text-xs text-muted-foreground">Sample calculation</p>
+                </div>
                 <StatusPill status="warning" label="Medium Risk" />
               </div>
               <div className="flex items-center gap-6">
@@ -66,7 +84,7 @@ export default function DashboardOverview() {
                 <div className="space-y-1.5">
                   <p className="text-sm text-muted-foreground">Estimated impact</p>
                   <p className="text-xl font-bold text-foreground">~12 leads/week</p>
-                  <p className="text-xs text-muted-foreground">at risk from current issues</p>
+                  <p className="text-xs text-muted-foreground">potentially affected by issues</p>
                 </div>
               </div>
             </div>
@@ -84,7 +102,10 @@ export default function DashboardOverview() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Weekly Trend */}
             <div className="p-6 rounded-xl border border-border bg-card shadow-card">
-              <h3 className="text-sm font-semibold text-foreground mb-4">Weekly Issue Trend</h3>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold text-foreground">Weekly Issue Trend</h3>
+                <span className="text-xs text-muted-foreground">Last 7 days</span>
+              </div>
               <div className="flex items-end gap-3 h-32">
                 {weeklyTrend.map((d) => (
                   <div key={d.day} className="flex-1 flex flex-col items-center gap-1">
@@ -123,7 +144,10 @@ export default function DashboardOverview() {
           {/* Recent Issues */}
           <div className="rounded-xl border border-border bg-card shadow-card overflow-hidden">
             <div className="px-6 py-4 border-b border-border flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-foreground">Recent Issues</h3>
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">Recent Issues</h3>
+                <p className="text-xs text-muted-foreground">Prioritized by conversion impact</p>
+              </div>
               <a href="/dashboard/issues" className="text-xs text-primary font-medium flex items-center gap-1 hover:underline">
                 View all <ArrowUpRight size={12} />
               </a>

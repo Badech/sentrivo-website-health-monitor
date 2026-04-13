@@ -1,6 +1,38 @@
-# Sentrivo — Website Conversion Monitoring
+# Sentrivo — Conversion-First Website Monitoring
 
-Sentrivo monitors your website daily and alerts you before broken UX, speed issues, and conversion leaks cost you leads.
+Sentrivo helps agencies monitor local service websites for conversion-killing issues like broken forms, invisible CTAs, and dead call buttons—before they cost clients leads.
+
+## Product Status
+
+**Currently in private beta.** This is a working prototype demonstrating the core product vision. We're refining the product with early agency partners.
+
+### What This Is
+- A functional Next.js application showcasing the Sentrivo product concept
+- Real UI/UX demonstrating how the product works
+- Sample data flows showing issue detection and reporting
+- Agency-focused positioning and messaging
+
+### What's Working
+- ✅ Premium landing page with agency positioning
+- ✅ Demo scan workflow with realistic issue detection
+- ✅ Dashboard shell with sample data
+- ✅ Trust architecture pages (Security, How It Works, Changelog)
+- ✅ Comparison section (vs uptime monitoring, GA4, manual audits)
+- ✅ Honest early-access framing
+
+### What's Next
+- Backend scanning infrastructure
+- Real website crawling and testing
+- Actual form submission verification
+- Live alerting system
+- Client data integration
+- Production deployment
+
+## Target Audience
+
+**Primary:** Digital agencies managing local service business websites (plumbers, dentists, law firms, HVAC, home services)
+
+**Secondary:** In-house teams managing high-value lead generation sites
 
 ## Tech Stack
 
@@ -228,18 +260,74 @@ export default function NewPage() {
 - Client components only when needed (interactivity, hooks)
 - Better performance and smaller bundles
 
-## Future Improvements
+## Product Philosophy
 
-- [ ] Add authentication (NextAuth.js or Clerk)
-- [ ] Implement real backend API integration
-- [ ] Add database layer (Prisma + PostgreSQL)
-- [ ] Implement actual monitoring logic
-- [ ] Add real-time notifications
-- [ ] Create API routes for data fetching
-- [ ] Add comprehensive testing
-- [ ] Implement analytics tracking
-- [ ] Add Stripe integration for payments
-- [ ] Deploy to Vercel
+### Honest Trust Architecture
+We've intentionally avoided:
+- ❌ Fake customer logos
+- ❌ Unverified traction claims ("12,000+ websites monitored")
+- ❌ False compliance badges (SOC 2, GDPR, etc.)
+- ❌ Inflated metrics presented as facts
+
+Instead, we've built trust through:
+- ✅ Clear "private beta" framing
+- ✅ Transparent product pages (Security, How It Works)
+- ✅ Sample data clearly labeled
+- ✅ Honest changelog
+- ✅ Product-first positioning
+- ✅ Specific ICP focus (agencies)
+
+### Why This Approach?
+We're building Sentrivo to be credible from day one. Better to be honest about early-stage status than to fake maturity with borrowed trust signals.
+
+## Key Pages & Features
+
+### Marketing Site
+- `/` - Landing page with agency-focused messaging
+- `/demo` - Interactive sample scan workflow
+- `/how-it-works` - Product explanation and technical approach
+- `/security` - Privacy-first principles and data handling
+- `/changelog` - Product updates and progress
+
+### Dashboard (Demo)
+- `/dashboard` - Overview with health scores and recent issues
+- `/dashboard/sites` - Multi-site management
+- `/dashboard/issues` - Issue center with severity breakdown
+- `/dashboard/scans` - Scan history
+- `/dashboard/reports` - Downloadable reports
+- `/dashboard/settings` - Account preferences
+
+## Development Roadmap
+
+### Phase 1: Foundation (Current)
+- [x] Next.js migration complete
+- [x] Agency positioning established
+- [x] Demo scan workflow built
+- [x] Trust architecture pages created
+- [x] Honest early-access framing
+
+### Phase 2: Backend (In Progress)
+- [ ] Headless browser scanning (Playwright)
+- [ ] Form submission testing
+- [ ] CTA visibility detection
+- [ ] Mobile UX analysis
+- [ ] Database layer (Prisma + PostgreSQL)
+- [ ] API routes for real scans
+
+### Phase 3: Production Features
+- [ ] Authentication system
+- [ ] Real-time alerting (email + Slack)
+- [ ] White-label reports for agencies
+- [ ] Client dashboard access
+- [ ] Webhook integrations
+- [ ] Payment system (Stripe)
+
+### Phase 4: Scale
+- [ ] SOC 2 compliance
+- [ ] API access for enterprise
+- [ ] Custom integrations
+- [ ] Advanced analytics
+- [ ] Multi-location support
 
 ## License
 

@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Wrench, Users, Target, Megaphone } from "lucide-react";
 
 const useCases = [
-  { icon: Wrench, title: "Local Service Businesses", description: "Plumbers, dentists, law firms — ensure your website captures every potential customer." },
-  { icon: Users, title: "Agencies Managing Client Sites", description: "Monitor all client websites from one dashboard. Prove your value with real data." },
-  { icon: Target, title: "Conversion-Focused Teams", description: "Growth and CRO teams that need continuous visibility into website performance." },
-  { icon: Megaphone, title: "Lead Generation Websites", description: "Protect the funnel. Every form, CTA, and landing page — monitored 24/7." },
+  { icon: Users, title: "Digital Agencies", description: "Monitor all client websites from one dashboard. Catch issues before clients notice them." },
+  { icon: Wrench, title: "Local Service Sites", description: "Plumbers, dentists, law firms—websites where every lead counts and forms must work." },
+  { icon: Megaphone, title: "Lead Generation Sites", description: "Protect the funnel. Every form submission, call button, and booking widget verified daily." },
+  { icon: Target, title: "High-Intent Industries", description: "HVAC, legal, medical, home services—industries with high lead value and complex funnels." },
 ];
 
 export function UseCasesSection() {
@@ -22,8 +22,11 @@ export function UseCasesSection() {
         >
           <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-3 block">Use Cases</span>
           <h2 className="text-3xl lg:text-5xl font-extrabold text-foreground mb-4">
-            Built for teams that care about leads
+            Who Sentrivo is built for
           </h2>
+          <p className="text-muted-foreground text-base max-w-2xl mx-auto">
+            Focused on agencies and high-value local service websites
+          </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">

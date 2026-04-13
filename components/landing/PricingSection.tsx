@@ -6,30 +6,30 @@ import { Button } from "@/components/ui/button";
 
 const plans = [
   {
-    name: "Solo",
-    price: "$29",
-    period: "/mo",
-    description: "For individual site owners who want peace of mind.",
-    features: ["1 website", "Daily scans", "Broken form detection", "Mobile UX checks", "Email alerts", "Weekly reports"],
-    cta: "Start Free Trial",
+    name: "Starter",
+    price: "Early Access",
+    period: "",
+    description: "Perfect for agencies testing with 1-3 client sites.",
+    features: ["Up to 3 websites", "Daily scans", "Broken form detection", "Mobile UX checks", "Email alerts", "Basic reports"],
+    cta: "Request Access",
     highlighted: false,
   },
   {
-    name: "Growth",
-    price: "$79",
-    period: "/mo",
-    description: "For growing businesses with high-value traffic.",
-    features: ["5 websites", "Hourly scans", "All Solo features", "CTA analysis", "Historical trends", "Slack integration", "Priority support"],
-    cta: "Start Free Trial",
+    name: "Agency",
+    price: "Coming Soon",
+    period: "",
+    description: "For agencies managing local service portfolios.",
+    features: ["Up to 15 websites", "Daily scans", "All Starter features", "CTA analysis", "White-label reports", "Slack integration", "Priority support"],
+    cta: "Join Waitlist",
     highlighted: true,
   },
   {
-    name: "Agency",
-    price: "$199",
-    period: "/mo",
-    description: "For agencies managing multiple client websites.",
-    features: ["25 websites", "Real-time scans", "All Growth features", "White-label reports", "Client dashboards", "API access", "Dedicated account manager"],
-    cta: "Contact Sales",
+    name: "Enterprise",
+    price: "Custom",
+    period: "",
+    description: "For large agencies and multi-location businesses.",
+    features: ["Unlimited websites", "Custom scan frequency", "All Agency features", "Dedicated support", "API access", "Custom integrations", "SLA guarantee"],
+    cta: "Contact Us",
     highlighted: false,
   },
 ];
@@ -46,10 +46,10 @@ export function PricingSection() {
         >
           <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-3 block">Pricing</span>
           <h2 className="text-3xl lg:text-5xl font-extrabold text-foreground mb-4">
-            Simple, transparent pricing
+            Early access pricing
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Start free. Upgrade when you're ready. No hidden fees.
+            We're currently in private beta. Request access to test Sentrivo with your client sites.
           </p>
         </motion.div>
 

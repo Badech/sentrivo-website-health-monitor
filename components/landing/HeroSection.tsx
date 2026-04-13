@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import { DashboardPreview } from "./DashboardPreview";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -31,8 +32,8 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-surface-dark-foreground leading-[1.08] max-w-4xl mx-auto mb-6"
         >
-          Stop losing leads to{" "}
-          <span className="text-gradient-primary">silent website issues</span>
+          Your clients pay for traffic.{" "}
+          <span className="text-gradient-primary">Don't let broken websites waste it.</span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -42,7 +43,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg lg:text-xl text-surface-dark-foreground/50 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Sentrivo scans your website daily, detecting broken forms, weak CTAs, mobile UX problems, and conversion leaks — before they cost you customers.
+          Sentrivo monitors local service websites for conversion-killing issues—broken forms, invisible CTAs, dead call buttons—so your agency catches problems before they cost clients leads.
         </motion.p>
 
         {/* CTAs */}
@@ -52,13 +53,17 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6"
         >
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 text-sm font-semibold gap-2">
-            Start Your Free Scan
-            <ArrowRight size={16} />
-          </Button>
-          <Button size="lg" variant="outline" className="border-surface-dark-foreground/10 text-surface-dark-foreground/70 hover:bg-surface-dark-foreground/5 px-8 h-12 text-sm">
-            Book a Demo
-          </Button>
+          <Link href="/demo">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 text-sm font-semibold gap-2">
+              Try Sample Scan
+              <ArrowRight size={16} />
+            </Button>
+          </Link>
+          <Link href="/demo">
+            <Button size="lg" variant="outline" className="border-surface-dark-foreground/10 text-surface-dark-foreground/70 hover:bg-surface-dark-foreground/5 px-8 h-12 text-sm">
+              View Sample Report
+            </Button>
+          </Link>
         </motion.div>
 
         {/* Trust indicators */}
@@ -68,8 +73,8 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex items-center justify-center gap-6 text-xs text-surface-dark-foreground/30 mb-16"
         >
-          <span className="flex items-center gap-1.5"><Shield size={13} /> SOC 2 Ready</span>
-          <span className="flex items-center gap-1.5"><Zap size={13} /> Setup in 60 seconds</span>
+          <span className="flex items-center gap-1.5"><Shield size={13} /> Privacy-first</span>
+          <span className="flex items-center gap-1.5"><Zap size={13} /> 2-minute setup</span>
           <span className="flex items-center gap-1.5"><Eye size={13} /> No code required</span>
         </motion.div>
 
