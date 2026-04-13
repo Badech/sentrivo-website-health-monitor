@@ -28,7 +28,7 @@ const plans = [
     price: "Contact Us",
     period: "",
     description: "For large agencies with custom monitoring needs.",
-    features: ["Custom website limit", "Custom scan frequency", "All Agency features", "Dedicated support", "Priority onboarding", "Custom integrations (roadmap)"],
+    features: ["Custom website limit", "Custom scan frequency", "All Agency features", "Dedicated support", "Priority onboarding", "Future: Custom integrations"],
     cta: "Contact Us",
     highlighted: false,
   },

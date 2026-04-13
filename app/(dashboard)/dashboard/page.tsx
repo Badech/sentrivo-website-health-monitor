@@ -204,9 +204,9 @@ export default function DashboardOverview() {
                         </div>
                         {issue.severity === 'critical' && (
                           <p className="text-xs text-muted-foreground mt-0.5 hidden group-hover:block">
-                            {i === 0 && "All contact form submissions are failing. Estimated impact: 15-20 leads/week"}
-                            {i === 1 && "Primary CTA not visible to 64% of mobile visitors"}
-                            {i === 2 && "Booking widget preventing appointment scheduling"}
+                            {i === 0 && "All contact form submissions are failing. Typical impact for local service sites: 15-20 leads/week"}
+                            {i === 1 && "Primary CTA not visible to 64% of mobile visitors. Blocks majority conversion path"}
+                            {i === 2 && "Booking widget preventing appointment scheduling. High-value conversion blocked"}
                           </p>
                         )}
                       </div>

@@ -346,9 +346,12 @@ export function SampleReportViewer() {
 
       {/* Report Footer */}
       <div className="text-center pt-4">
-        <p className="text-xs text-muted-foreground">
-          This is a sample report showing realistic data. Actual reports are generated from live scans.
-        </p>
+        <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/30 border border-border">
+          <p className="text-xs text-muted-foreground">
+            <strong className="text-foreground">Sample report:</strong> Data shown is illustrative. 
+            Real monitoring provides site-specific findings and impact analysis.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -25,11 +25,11 @@ export default function SampleReportPage() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-3">
               This is an example of the detailed reports Sentrivo generates for your client websites.
             </p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 border border-border">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-              <p className="text-xs text-muted-foreground">
-                <strong className="text-foreground">Note:</strong> This report uses sample data to demonstrate format and structure. 
-                Actual reports are generated from live scans of your sites.
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary/5 border-2 border-primary/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <p className="text-xs text-foreground">
+                <strong className="font-semibold">Sample Data:</strong> This report demonstrates format and structure using illustrative data. 
+                Real reports reflect actual scans of your monitored sites.
               </p>
             </div>
           </div>
