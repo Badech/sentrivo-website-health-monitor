@@ -5,7 +5,7 @@ interface StatusPillProps {
   label?: string;
 }
 
-export function StatusPill({ status, label }: StatusPillProps) {
+export function StatusPill({ status, label, className }: StatusPillProps) {
   const config = {
     healthy: { bg: "bg-success/10", text: "text-success", dot: "bg-success", defaultLabel: "Healthy" },
     warning: { bg: "bg-warning/10", text: "text-warning", dot: "bg-warning", defaultLabel: "Warning" },
