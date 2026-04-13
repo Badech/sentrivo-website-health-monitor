@@ -11,10 +11,10 @@ import {
 const faqs = [
   { q: "How does Sentrivo scan my website?", a: "Sentrivo uses headless browser technology to crawl your site just like a real visitor would. We test forms, click CTAs, measure load times, and verify tracking — all automatically." },
   { q: "Do I need to install any code on my site?", a: "No. Just add your URL and Sentrivo handles everything externally. No scripts, plugins, or code changes required." },
-  { q: "How quickly will I be alerted about issues?", a: "Critical issues trigger instant alerts via email and Slack. Non-critical findings are included in your weekly summary report." },
+  { q: "How quickly will I be alerted about issues?", a: "Critical issues trigger instant email alerts. Non-critical findings are included in your daily summary reports." },
   { q: "What types of issues does Sentrivo detect?", a: "Broken forms, dead call buttons, booking widget failures, CTA visibility problems, slow page loads, mobile UX issues, and tracking/pixel gaps." },
-  { q: "Can I monitor multiple websites?", a: "Yes. Growth plans support up to 5 sites, and Agency plans cover 25+. Each site gets its own dashboard and reporting." },
-  { q: "Is there a free trial?", a: "Yes. Every plan includes a 14-day free trial with full access. No credit card required to start." },
+  { q: "Can I monitor multiple websites?", a: "Yes. Our private beta supports up to 3 client sites. Agency and Enterprise plans with higher limits are coming soon." },
+  { q: "How do I get access?", a: "We're currently in private beta. Request access and we'll get you set up within 24-48 hours. Limited spots available." },
 ];
 
 export function FAQSection() {

@@ -28,6 +28,35 @@ export default function DashboardOverview() {
       <AppTopbar title="Dashboard" showSiteContext />
       <main className="flex-1 p-4 md:p-6 overflow-auto bg-muted/30">
         <div className="max-w-7xl mx-auto space-y-4 md:space-y-6">
+          {/* Action Needed Banner */}
+          <div className="p-4 md:p-5 rounded-xl border border-critical/30 bg-critical/5 shadow-card">
+            <div className="flex items-start gap-3">
+              <div className="shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-lg bg-critical/10 flex items-center justify-center">
+                  <AlertTriangle size={16} className="text-critical" />
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-semibold text-foreground mb-1">3 critical issues require immediate attention</h3>
+                <p className="text-xs text-muted-foreground mb-3">
+                  These issues are actively blocking conversions and should be fixed today to prevent lead loss.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <a href="/dashboard/issues" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-critical text-critical-foreground text-xs font-medium hover:bg-critical/90 transition-colors">
+                    View Critical Issues
+                    <ArrowUpRight size={12} />
+                  </a>
+                  <button className="px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-medium text-foreground hover:bg-muted transition-colors">
+                    Email Summary to Team
+                  </button>
+                </div>
+              </div>
+              <button className="shrink-0 text-muted-foreground hover:text-foreground transition-colors">
+                <XCircle size={16} />
+              </button>
+            </div>
+          </div>
+
           {/* Score cards row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             {/* Health Score */}
@@ -97,7 +126,11 @@ export default function DashboardOverview() {
                     Avg: 6.3 issues/day • Trending: ↓12%
                   </p>
                 </div>
-                <span className="text-xs text-muted-foreground hidden sm:block">Last 7 days</span>
+                <div className="flex items-center gap-2">
+                  <div className="px-2 py-1 rounded bg-success/10 border border-success/20">
+                    <span className="text-xs font-semibold text-success">↓ Improving</span>
+                  </div>
+                </div>
               </div>
               <div className="flex items-end gap-2 md:gap-3 h-28 md:h-32">
                 {weeklyTrend.map((d) => (
@@ -154,17 +187,35 @@ export default function DashboardOverview() {
             </div>
             <div className="divide-y divide-border">
               {recentIssues.map((issue, i) => (
-                <div key={i} className="flex items-center justify-between px-6 py-3.5 hover:bg-muted/30 transition-colors">
-                  <div className="flex items-center gap-3 min-w-0">
-                    {issue.severity === 'critical' && <XCircle size={15} className="text-critical shrink-0" />}
-                    {issue.severity === 'warning' && <AlertTriangle size={15} className="text-warning shrink-0" />}
-                    {issue.severity === 'healthy' && <CheckCircle2 size={15} className="text-success shrink-0" />}
-                    <span className="text-sm text-foreground truncate">{issue.title}</span>
-                  </div>
-                  <div className="flex items-center gap-4 shrink-0 ml-4">
-                    <span className="text-xs font-mono text-muted-foreground hidden sm:block">{issue.page}</span>
-                    <StatusPill status={issue.severity} />
-                    <span className="text-xs text-muted-foreground hidden md:block">{issue.time}</span>
+                <div key={i} className="group hover:bg-muted/30 transition-colors cursor-pointer">
+                  <div className="flex items-center justify-between px-6 py-3.5">
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      {issue.severity === 'critical' && <XCircle size={15} className="text-critical shrink-0" />}
+                      {issue.severity === 'warning' && <AlertTriangle size={15} className="text-warning shrink-0" />}
+                      {issue.severity === 'healthy' && <CheckCircle2 size={15} className="text-success shrink-0" />}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-foreground truncate">{issue.title}</span>
+                          {i < 2 && (
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase bg-primary/10 text-primary shrink-0">
+                              New
+                            </span>
+                          )}
+                        </div>
+                        {issue.severity === 'critical' && (
+                          <p className="text-xs text-muted-foreground mt-0.5 hidden group-hover:block">
+                            {i === 0 && "All contact form submissions are failing. Estimated impact: 15-20 leads/week"}
+                            {i === 1 && "Primary CTA not visible to 64% of mobile visitors"}
+                            {i === 2 && "Booking widget preventing appointment scheduling"}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 shrink-0 ml-4">
+                      <span className="text-xs font-mono text-muted-foreground hidden sm:block">{issue.page}</span>
+                      <StatusPill status={issue.severity} />
+                      <span className="text-xs text-muted-foreground hidden md:block">{issue.time}</span>
+                    </div>
                   </div>
                 </div>
               ))}

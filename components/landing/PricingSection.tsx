@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 
 const plans = [
   {
-    name: "Starter",
-    price: "Private Beta",
+    name: "Private Beta",
+    price: "Request Access",
     period: "",
-    description: "Perfect for agencies testing with 1-3 client sites.",
-    features: ["Up to 3 websites", "Daily scans", "Broken form detection", "Mobile UX checks", "Email alerts", "Basic reports"],
+    description: "Currently accepting a limited number of agencies for early access testing.",
+    features: ["Up to 3 websites", "Daily scans", "Broken form detection", "Mobile UX checks", "CTA visibility checks", "Email alerts"],
     cta: "Request Access",
     highlighted: true,
   },
@@ -18,18 +18,18 @@ const plans = [
     name: "Agency",
     price: "Coming Soon",
     period: "",
-    description: "For agencies managing local service portfolios.",
-    features: ["Up to 15 websites", "Daily scans", "All Starter features", "CTA analysis", "White-label reports", "Slack integration", "Priority support"],
-    cta: "Request Access",
+    description: "For agencies managing multiple client portfolios.",
+    features: ["Up to 15 websites", "Daily scans", "All Beta features", "Priority support", "Advanced reporting", "Slack alerts (coming soon)"],
+    cta: "Join Waitlist",
     highlighted: false,
   },
   {
     name: "Enterprise",
-    price: "Custom",
+    price: "Contact Us",
     period: "",
-    description: "For large agencies and multi-location businesses.",
-    features: ["Unlimited websites", "Custom scan frequency", "All Agency features", "Dedicated support", "API access", "Custom integrations"],
-    cta: "Request Access",
+    description: "For large agencies with custom monitoring needs.",
+    features: ["Custom website limit", "Custom scan frequency", "All Agency features", "Dedicated support", "SLA guarantees", "Custom integrations (roadmap)"],
+    cta: "Contact Us",
     highlighted: false,
   },
 ];
@@ -78,7 +78,16 @@ export function PricingSection() {
                 <span className="text-4xl font-extrabold text-foreground">{plan.price}</span>
                 <span className="text-sm text-muted-foreground">{plan.period}</span>
               </div>
-              <a href="mailto:hello@sentrivo.com?subject=Access Request" className="block">
+              <a 
+                href={
+                  plan.cta === "Request Access" 
+                    ? "mailto:hello@sentrivo.com?subject=Private Beta Access Request" 
+                    : plan.cta === "Join Waitlist"
+                    ? "mailto:hello@sentrivo.com?subject=Agency Plan Waitlist"
+                    : "mailto:hello@sentrivo.com?subject=Enterprise Inquiry"
+                } 
+                className="block"
+              >
                 <Button
                   className={`w-full mb-6 ${
                     plan.highlighted
