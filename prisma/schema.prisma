@@ -1,0 +1,208 @@
+// Sentrivo Database Schema
+// Neon Postgres + Prisma setup for production-ready SaaS
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================
+// CORE MODELS
+// ============================================
+
+model Workspace {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  plan      String   @default("FREE") // FREE, BETA, AGENCY, ENTERPRISE
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  memberships Membership[]
+  sites       Site[]
+  settings    WorkspaceSetting?
+
+  @@index([slug])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  memberships Membership[]
+
+  @@index([email])
+}
+
+model Membership {
+  id          String   @id @default(cuid())
+  workspaceId String
+  userId      String
+  role        String   @default("MEMBER") // OWNER, ADMIN, MEMBER
+  createdAt   DateTime @default(now())
+
+  // Relations
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, userId])
+  @@index([workspaceId])
+  @@index([userId])
+}
+
+model Site {
+  id            String    @id @default(cuid())
+  workspaceId   String
+  name          String
+  domain        String
+  industry      String?
+  status        String    @default("ACTIVE") // ACTIVE, PAUSED, ARCHIVED
+  scanFrequency String    @default("DAILY") // DAILY, WEEKLY, MANUAL
+  healthScore   Int?
+  leadRiskScore Int?
+  lastScanAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  workspace Workspace  @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  scans     Scan[]
+  issues    Issue[]
+  reports   Report[]
+  scanPages ScanPage[]
+
+  @@unique([workspaceId, domain])
+  @@index([workspaceId])
+  @@index([domain])
+  @@index([status])
+}
+
+model Scan {
+  id           String    @id @default(cuid())
+  siteId       String
+  source       String    @default("LIVE") // DEMO, LIVE
+  status       String    @default("QUEUED") // QUEUED, RUNNING, COMPLETED, FAILED
+  pagesScanned Int       @default(0)
+  checksRun    Int       @default(0)
+  healthScore  Int?
+  criticalCount Int      @default(0)
+  warningCount  Int      @default(0)
+  healthyCount  Int      @default(0)
+  startedAt    DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  summaryJson  Json?
+
+  // Relations
+  site      Site       @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  pages     ScanPage[]
+  issues    Issue[]
+  reports   Report[]
+
+  @@index([siteId])
+  @@index([status])
+  @@index([source])
+  @@index([createdAt])
+}
+
+model ScanPage {
+  id            String   @id @default(cuid())
+  scanId        String
+  siteId        String
+  path          String
+  title         String?
+  pageType      String?
+  deviceSummary Json?
+  createdAt     DateTime @default(now())
+
+  // Relations
+  scan   Scan   @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  site   Site   @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  issues Issue[]
+
+  @@index([scanId])
+  @@index([siteId])
+  @@index([path])
+}
+
+model Issue {
+  id                     String    @id @default(cuid())
+  siteId                 String
+  scanId                 String
+  scanPageId             String?
+  category               String
+  severity               String    // CRITICAL, WARNING, HEALTHY
+  status                 String    @default("OPEN") // OPEN, ACKNOWLEDGED, RESOLVED
+  title                  String
+  description            String    @db.Text
+  impactSummary          String?   @db.Text
+  evidenceSummary        String?   @db.Text
+  recommendation         String?   @db.Text
+  estimatedLeadImpact    String?
+  estimatedRevenueImpact String?
+  firstSeenAt            DateTime  @default(now())
+  lastSeenAt             DateTime  @default(now())
+  resolvedAt             DateTime?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  // Relations
+  site     Site      @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  scan     Scan      @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  scanPage ScanPage? @relation(fields: [scanPageId], references: [id], onDelete: SetNull)
+
+  @@index([siteId])
+  @@index([scanId])
+  @@index([severity])
+  @@index([status])
+  @@index([category])
+  @@index([firstSeenAt])
+}
+
+model Report {
+  id               String   @id @default(cuid())
+  siteId           String
+  scanId           String?
+  kind             String   // SAMPLE, SCAN_SUMMARY, WEEKLY, MONTHLY
+  title            String
+  executiveSummary String   @db.Text
+  generatedAt      DateTime @default(now())
+  data             Json
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  site Site  @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  scan Scan? @relation(fields: [scanId], references: [id], onDelete: SetNull)
+
+  @@index([siteId])
+  @@index([scanId])
+  @@index([kind])
+  @@index([generatedAt])
+}
+
+model WorkspaceSetting {
+  id                   String   @id @default(cuid())
+  workspaceId          String   @unique
+  alertEmail           String?
+  slackWebhookUrl      String?
+  defaultScanFrequency String?
+  timezone             String?  @default("UTC")
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  // Relations
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+}
