@@ -3,6 +3,9 @@ import { AlertTriangle, XCircle, CheckCircle2, ArrowUpRight, TrendingDown, Bell,
 import { StatusPill } from '@/components/app/StatusPill';
 import { getDashboardData, getCurrentWorkspace, getAllSites } from '@/lib/data';
 
+// Force dynamic rendering - this page requires database access
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardOverview() {
   // Get current workspace and first site for demo
   const workspace = await getCurrentWorkspace();
