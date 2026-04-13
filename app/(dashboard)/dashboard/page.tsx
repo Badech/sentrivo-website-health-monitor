@@ -40,7 +40,7 @@ export default function DashboardOverview() {
                 <StatusPill status="healthy" />
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
-                <ScoreRing score={87} size={80} className="sm:w-[100px]" />
+                <ScoreRing score={87} size={80} />
                 <div className="space-y-1.5 md:space-y-2 text-center sm:text-left">
                   <div className="flex items-center gap-2 text-xs md:text-sm">
                     <span className="w-2 h-2 rounded-full bg-success" />
@@ -68,7 +68,7 @@ export default function DashboardOverview() {
                 <StatusPill status="warning" label="Medium Risk" />
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
-                <ScoreRing score={62} size={80} className="sm:w-[100px]" />
+                <ScoreRing score={62} size={80} />
                 <div className="space-y-1 md:space-y-1.5 text-center sm:text-left">
                   <p className="text-xs md:text-sm text-muted-foreground">Estimated impact</p>
                   <p className="text-lg md:text-xl font-bold text-foreground">~12 leads/week</p>
