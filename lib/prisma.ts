@@ -15,10 +15,14 @@ const globalForPrisma = globalThis as unknown as {
 function createPrismaClient() {
   const connectionString = process.env.DATABASE_URL;
   
-  // During build time when no DATABASE_URL, return basic client
+  // During build time when no DATABASE_URL, use a dummy connection string with adapter
+  // This allows Next.js to build without an actual database
   if (!connectionString) {
-    console.log('[Prisma] No DATABASE_URL found, using basic client for build');
+    console.log('[Prisma] No DATABASE_URL found, using dummy adapter for build');
+    const dummyConnectionString = 'postgresql://user:pass@localhost:5432/db';
+    const adapter = new PrismaNeon({ connectionString: dummyConnectionString });
     return new PrismaClient({
+      adapter,
       log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
     });
   }
