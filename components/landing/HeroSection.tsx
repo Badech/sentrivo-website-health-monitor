@@ -59,8 +59,8 @@ export function HeroSection() {
               <ArrowRight size={16} />
             </Button>
           </Link>
-          <Link href="/demo">
-            <Button size="lg" variant="outline" className="border-surface-dark-foreground/10 text-surface-dark-foreground/70 hover:bg-surface-dark-foreground/5 px-8 h-12 text-sm">
+          <Link href="/sample-report">
+            <Button size="lg" variant="outline-secondary" className="px-8 h-12 text-sm font-medium">
               View Sample Report
             </Button>
           </Link>

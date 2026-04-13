@@ -14,6 +14,7 @@ import {
   FileText
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const SAMPLE_ISSUES = [
   {
@@ -59,15 +60,15 @@ const SAMPLE_ISSUES = [
 ];
 
 const SCAN_STAGES = [
-  { label: "Connecting to website", duration: 1000 },
-  { label: "Discovering pages (47 found)", duration: 1500 },
-  { label: "Testing form submissions (12 forms)", duration: 2000 },
-  { label: "Checking CTA visibility", duration: 1500 },
-  { label: "Analyzing mobile UX", duration: 1800 },
-  { label: "Verifying call buttons", duration: 1200 },
-  { label: "Testing booking widgets", duration: 1500 },
-  { label: "Checking tracking tags", duration: 1000 },
-  { label: "Compiling report", duration: 800 },
+  { label: "Validating domain", detail: "Verifying DNS and SSL certificate", duration: 800 },
+  { label: "Discovering pages", detail: "Found 47 pages across sitemap and navigation", duration: 1500 },
+  { label: "Testing form submissions", detail: "Checking 12 contact forms and lead capture widgets", duration: 2000 },
+  { label: "Analyzing CTA visibility", detail: "Measuring primary action button placement and contrast", duration: 1500 },
+  { label: "Measuring mobile performance", detail: "Testing load times and responsive behavior", duration: 1800 },
+  { label: "Verifying call buttons", detail: "Checking tel: link formatting and click functionality", duration: 1200 },
+  { label: "Testing booking widgets", detail: "Validating calendar embeds and scheduling tools", duration: 1500 },
+  { label: "Checking tracking tags", detail: "Verifying GA4, Facebook Pixel, and conversion pixels", duration: 1000 },
+  { label: "Compiling results", detail: "Prioritizing issues by conversion impact", duration: 800 },
 ];
 
 export function SampleScanFlow() {
@@ -184,13 +185,18 @@ export function SampleScanFlow() {
                 </h3>
                 
                 {/* Current Stage */}
-                <div className="mb-6">
-                  <p className="text-sm md:text-base text-primary font-medium mb-1">
-                    {SCAN_STAGES[currentStage]?.label}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {checksRun} checks completed
-                  </p>
+                <div className="mb-6 px-4">
+                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
+                    <p className="text-base md:text-lg font-semibold text-primary mb-1">
+                      {SCAN_STAGES[currentStage]?.label}
+                    </p>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {SCAN_STAGES[currentStage]?.detail}
+                    </p>
+                    <p className="text-xs text-muted-foreground font-mono">
+                      {checksRun} of 142 checks completed
+                    </p>
+                  </div>
                 </div>
                 
                 {/* Progress Bar */}
@@ -209,26 +215,43 @@ export function SampleScanFlow() {
                 </div>
 
                 {/* Stage List */}
-                <div className="max-w-md mx-auto space-y-1.5">
+                <div className="max-w-lg mx-auto space-y-1">
                   {SCAN_STAGES.map((stage, i) => (
                     <div
                       key={i}
-                      className={`flex items-center gap-2 text-xs md:text-sm transition-opacity ${
+                      className={`flex items-start gap-3 px-3 py-2 rounded-lg transition-all ${
                         i < currentStage
-                          ? "text-success opacity-70"
+                          ? "bg-success/5"
                           : i === currentStage
-                          ? "text-foreground opacity-100"
-                          : "text-muted-foreground opacity-40"
+                          ? "bg-primary/10"
+                          : "bg-transparent"
                       }`}
                     >
-                      {i < currentStage ? (
-                        <CheckCircle2 size={14} className="shrink-0" />
-                      ) : i === currentStage ? (
-                        <Loader2 size={14} className="animate-spin shrink-0" />
-                      ) : (
-                        <div className="w-3.5 h-3.5 rounded-full border-2 border-current shrink-0" />
-                      )}
-                      <span className="text-left">{stage.label.split(" (")[0]}</span>
+                      <div className="shrink-0 mt-0.5">
+                        {i < currentStage ? (
+                          <CheckCircle2 size={16} className="text-success" />
+                        ) : i === currentStage ? (
+                          <Loader2 size={16} className="animate-spin text-primary" />
+                        ) : (
+                          <div className="w-4 h-4 rounded-full border-2 border-muted-foreground/30" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className={`text-sm font-medium ${
+                          i < currentStage
+                            ? "text-success"
+                            : i === currentStage
+                            ? "text-foreground"
+                            : "text-muted-foreground/60"
+                        }`}>
+                          {stage.label}
+                        </p>
+                        {i === currentStage && (
+                          <p className="text-xs text-muted-foreground mt-0.5">
+                            {stage.detail}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -351,20 +374,37 @@ export function SampleScanFlow() {
             </div>
 
             {/* CTA */}
-            <Card className="p-4 md:p-6 text-center bg-primary/5 border-primary/20">
-              <h3 className="text-base md:text-lg font-semibold text-foreground mb-2">
-                Ready for automated daily monitoring?
-              </h3>
-              <p className="text-xs md:text-sm text-muted-foreground mb-4">
-                Get real-time alerts when issues are detected. Catch problems before they cost you leads.
-              </p>
-              <Button size="lg" className="gap-2">
-                Request Early Access
-                <ArrowRight size={16} />
-              </Button>
-              <p className="text-xs text-muted-foreground mt-3">
-                Currently in private beta • Limited spots available
-              </p>
+            <Card className="p-4 md:p-6 bg-primary/5 border-primary/20">
+              <div className="text-center mb-6">
+                <h3 className="text-base md:text-lg font-semibold text-foreground mb-2">
+                  See the full report format
+                </h3>
+                <p className="text-xs md:text-sm text-muted-foreground mb-4">
+                  This scan shows individual issues. See how they're presented in a complete client-ready report.
+                </p>
+                <Link href="/sample-report">
+                  <Button size="lg" variant="outline" className="gap-2 border-primary/30 hover:bg-primary/10 mb-3">
+                    <FileText size={16} />
+                    View Sample Report
+                  </Button>
+                </Link>
+              </div>
+              
+              <div className="pt-4 border-t border-border text-center">
+                <h4 className="text-sm font-semibold text-foreground mb-2">
+                  Ready for automated daily monitoring?
+                </h4>
+                <p className="text-xs text-muted-foreground mb-4">
+                  Get real-time alerts when issues are detected. Catch problems before they cost your clients leads.
+                </p>
+                <Button size="lg" className="gap-2">
+                  Request Access
+                  <ArrowRight size={16} />
+                </Button>
+                <p className="text-xs text-muted-foreground mt-3">
+                  Private beta • Limited spots available
+                </p>
+              </div>
             </Card>
           </motion.div>
         )}

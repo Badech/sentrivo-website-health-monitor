@@ -3,17 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
   const links = [
-    { label: "Features", href: "#features" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Features", href: "/#features" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "FAQ", href: "/#faq" },
   ];
 
   return (
@@ -32,70 +34,96 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm text-surface-dark-foreground/60 hover:text-surface-dark-foreground transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
           <Link href="/dashboard">
-            <Button variant="ghost" size="sm" className="text-surface-dark-foreground/70 hover:text-surface-dark-foreground hover:bg-surface-dark/50">
+            <Button variant="ghost-light" size="sm">
               Log in
             </Button>
           </Link>
           <Link href="/demo">
             <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Try Demo
+              Try Sample Scan
             </Button>
           </Link>
         </div>
 
-        <button
-          className="md:hidden text-surface-dark-foreground/70"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
+        {/* Mobile Menu */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-surface-dark-foreground/70">
+                <Menu size={22} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] p-0 bg-surface-dark border-border/10">
+              <div className="flex flex-col h-full">
+                {/* Logo */}
+                <div className="h-16 flex items-center px-6 border-b border-surface-dark-foreground/10">
+                  <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary-foreground">
+                      <path d="M12 2L2 7l10 5 10-5-10-5Z" />
+                      <path d="M2 17l10 5 10-5" />
+                      <path d="M2 12l10 5 10-5" />
+                    </svg>
+                  </div>
+                  <span className="ml-2.5 text-base font-bold text-surface-dark-foreground">Sentrivo</span>
+                </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-dark border-t border-border/10"
-          >
-            <div className="container px-4 py-4 flex flex-col gap-3">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-surface-dark-foreground/70 py-2"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2 pt-2">
-                <Link href="/dashboard">
-                  <Button variant="outline" size="sm" className="w-full border-border/20 text-surface-dark-foreground/70">
-                    Log in
-                  </Button>
-                </Link>
-                <Link href="/demo" className="w-full">
-                  <Button size="sm" className="w-full">Try Demo</Button>
-                </Link>
+                {/* Navigation Links */}
+                <nav className="flex-1 px-4 py-6">
+                  <div className="space-y-1 mb-6">
+                    {links.map((link) => (
+                      <SheetTrigger asChild key={link.href}>
+                        <Link
+                          href={link.href}
+                          className="block px-3 py-2.5 rounded-lg text-sm text-surface-dark-foreground/70 hover:text-surface-dark-foreground hover:bg-surface-dark-foreground/5 transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetTrigger>
+                    ))}
+                  </div>
+
+                  {/* CTAs */}
+                  <div className="space-y-2.5 pt-4 border-t border-surface-dark-foreground/10">
+                    <SheetTrigger asChild>
+                      <Link href="/demo" className="block">
+                        <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                          Try Sample Scan
+                        </Button>
+                      </Link>
+                    </SheetTrigger>
+                    <SheetTrigger asChild>
+                      <Link href="/dashboard" className="block">
+                        <Button variant="outline-secondary" size="sm" className="w-full">
+                          Log in
+                        </Button>
+                      </Link>
+                    </SheetTrigger>
+                  </div>
+                </nav>
+
+                {/* Footer */}
+                <div className="p-4 border-t border-surface-dark-foreground/10">
+                  <p className="text-xs text-surface-dark-foreground/40 text-center">
+                    Private beta • Built for agencies
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
     </nav>
   );
 }

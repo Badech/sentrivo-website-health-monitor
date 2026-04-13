@@ -24,17 +24,17 @@ export function CTASection() {
           We're working with a small group of agencies in private beta. Request access to test Sentrivo with your portfolio.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link href="/demo">
+          <a href="mailto:hello@sentrivo.com?subject=Access Request">
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 text-sm font-semibold gap-2">
-              Try Sample Scan
+              Request Access
               <ArrowRight size={16} />
             </Button>
-          </Link>
-          <a href="mailto:hello@sentrivo.com?subject=Early Access Request">
-            <Button size="lg" variant="outline" className="border-surface-dark-foreground/10 text-surface-dark-foreground/70 hover:bg-surface-dark-foreground/5 px-8 h-12 text-sm">
-              Request Early Access
-            </Button>
           </a>
+          <Link href="/demo">
+            <Button size="lg" variant="outline-secondary" className="px-8 h-12 text-sm">
+              Try Sample Scan
+            </Button>
+          </Link>
         </div>
         <p className="text-xs text-surface-dark-foreground/30 mt-6">
           Private beta • Limited spots available

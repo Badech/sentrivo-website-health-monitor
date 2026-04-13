@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/button";
 const plans = [
   {
     name: "Starter",
-    price: "Early Access",
+    price: "Private Beta",
     period: "",
     description: "Perfect for agencies testing with 1-3 client sites.",
     features: ["Up to 3 websites", "Daily scans", "Broken form detection", "Mobile UX checks", "Email alerts", "Basic reports"],
     cta: "Request Access",
-    highlighted: false,
+    highlighted: true,
   },
   {
     name: "Agency",
@@ -20,8 +20,8 @@ const plans = [
     period: "",
     description: "For agencies managing local service portfolios.",
     features: ["Up to 15 websites", "Daily scans", "All Starter features", "CTA analysis", "White-label reports", "Slack integration", "Priority support"],
-    cta: "Join Waitlist",
-    highlighted: true,
+    cta: "Request Access",
+    highlighted: false,
   },
   {
     name: "Enterprise",
@@ -29,7 +29,7 @@ const plans = [
     period: "",
     description: "For large agencies and multi-location businesses.",
     features: ["Unlimited websites", "Custom scan frequency", "All Agency features", "Dedicated support", "API access", "Custom integrations"],
-    cta: "Contact Us",
+    cta: "Request Access",
     highlighted: false,
   },
 ];
@@ -78,15 +78,17 @@ export function PricingSection() {
                 <span className="text-4xl font-extrabold text-foreground">{plan.price}</span>
                 <span className="text-sm text-muted-foreground">{plan.period}</span>
               </div>
-              <Button
-                className={`w-full mb-6 ${
-                  plan.highlighted
-                    ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {plan.cta}
-              </Button>
+              <a href="mailto:hello@sentrivo.com?subject=Access Request" className="block">
+                <Button
+                  className={`w-full mb-6 ${
+                    plan.highlighted
+                      ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  {plan.cta}
+                </Button>
+              </a>
               <ul className="space-y-3">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-2.5 text-sm text-muted-foreground">

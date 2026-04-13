@@ -2,6 +2,12 @@
   "name": "sentrivo",
   "private": true,
   "version": "0.1.0",
+  "description": "Conversion-first website monitoring for agencies managing local service sites",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Badech/sentrivo-website-health-monitor"
+  },
+  "homepage": "https://sentrivo.com",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
