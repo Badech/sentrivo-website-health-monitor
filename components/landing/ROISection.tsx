@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { TrendingDown, Clock, ShieldCheck, DollarSign } from "lucide-react";
 
 const values = [
-  { icon: TrendingDown, title: "Reduce Missed Leads", description: "Catch broken forms and dead CTAs before they silently cost you conversions.", metric: "Sample", metricLabel: "37% fewer missed leads" },
-  { icon: Clock, title: "Catch Issues Early", description: "Daily scans mean you find problems in hours, not weeks.", metric: "~24h", metricLabel: "typical detection time" },
-  { icon: ShieldCheck, title: "Improve Client Retention", description: "Proactively fix UX issues before clients notice the problem.", metric: "Sample", metricLabel: "2.4x faster fixes" },
-  { icon: DollarSign, title: "Protect Ad Spend", description: "Stop sending paid traffic to broken pages. Every click should count.", metric: "Sample", metricLabel: "full coverage" },
+  { icon: TrendingDown, title: "Catch Conversion Killers", description: "Detect broken forms, invisible CTAs, and dead call buttons before they cost your clients leads.", metric: "142", metricLabel: "checks per scan" },
+  { icon: Clock, title: "Find Issues Fast", description: "Daily automated scans detect problems within 24 hours, not weeks or months.", metric: "<24h", metricLabel: "typical detection time" },
+  { icon: ShieldCheck, title: "Proactive Client Service", description: "Fix UX issues before clients notice them. Show clients you're protecting their investment.", metric: "Daily", metricLabel: "automated monitoring" },
+  { icon: DollarSign, title: "Protect Paid Traffic", description: "Every broken page wastes ad spend. Monitor the pages that matter most.", metric: "All", metricLabel: "conversion paths covered" },
 ];
 
 export function ROISection() {
@@ -25,7 +25,7 @@ export function ROISection() {
             Why agencies choose Sentrivo
           </h2>
           <p className="text-muted-foreground text-base max-w-2xl mx-auto">
-            Sample impact metrics from early agency partners
+            Automated monitoring that protects your clients' conversion performance
           </p>
         </motion.div>
 

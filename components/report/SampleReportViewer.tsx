@@ -36,11 +36,11 @@ const CRITICAL_FINDINGS = [
     category: "Broken Form",
     severity: "critical" as const,
     impact: "100% of form submissions failing",
-    businessImpact: "All contact form leads are being lost. Estimated 15-20 leads per week affected based on typical traffic.",
+    businessImpact: "All contact form leads are being lost. Typical local service sites receive 15-20 form submissions per week from organic traffic.",
     evidence: "Error detected at form submit handler on /contact page. Server responds with 500 Internal Server Error.",
     recommendation: "Check server logs for the /api/contact endpoint. Verify database connection and form handler configuration.",
     technicalDetail: "POST request to /api/contact returns status 500. Form validation passes but server-side processing fails.",
-    estimatedRevenue: "$3,000-$4,000/week in lost opportunities",
+    potentialImpact: "High-value conversion path completely blocked",
   },
   {
     title: "Primary CTA button invisible on mobile devices",
@@ -48,11 +48,11 @@ const CRITICAL_FINDINGS = [
     category: "CTA Visibility",
     severity: "critical" as const,
     impact: "Mobile users cannot see main conversion action",
-    businessImpact: "Primary 'Book Appointment' button hidden on mobile. 64% of traffic is mobile, creating major conversion barrier.",
+    businessImpact: "Primary 'Book Appointment' button hidden on mobile. With 64% mobile traffic, this creates a major conversion barrier for most visitors.",
     evidence: "Button positioned -50px below viewport fold on 375px width screens. CSS media query misconfiguration detected.",
     recommendation: "Adjust mobile CSS to ensure CTA button appears above the fold on all mobile screen sizes.",
     technicalDetail: "Element has CSS property 'margin-top: -50px' applied at mobile breakpoint, pushing button out of view.",
-    estimatedRevenue: "$2,500-$3,500/week in mobile conversion loss",
+    potentialImpact: "Primary conversion action unavailable to majority of visitors",
   },
 ];
 
@@ -63,11 +63,11 @@ const WARNING_FINDINGS = [
     category: "Call Button",
     severity: "warning" as const,
     impact: "Mobile users may not be able to initiate calls",
-    businessImpact: "Phone clicks from mobile devices may fail. Reduces immediate contact rate from mobile visitors.",
+    businessImpact: "Phone clicks from mobile devices may fail on certain devices. This reduces immediate contact opportunities from mobile visitors.",
     evidence: "Phone link formatted as 'tel:555.123.4567' instead of proper 'tel:555-123-4567' format.",
     recommendation: "Update tel: link format to use standard hyphen formatting for better mobile compatibility.",
     technicalDetail: "Invalid tel: URL schema may not trigger dialer app on some mobile devices.",
-    estimatedRevenue: "Minor impact, but reduces mobile conversion efficiency",
+    potentialImpact: "Reduced mobile call conversion rate",
   },
   {
     title: "Page load time exceeds 4 seconds on mobile",
@@ -75,11 +75,11 @@ const WARNING_FINDINGS = [
     category: "Mobile Performance",
     severity: "warning" as const,
     impact: "Slow loading may cause visitor drop-off",
-    businessImpact: "Mobile page load of 4.2s exceeds Google's recommended 2.5s threshold. May impact search rankings and user experience.",
+    businessImpact: "Mobile page load of 4.2s exceeds Google's recommended 2.5s threshold. May impact search rankings and increase bounce rate.",
     evidence: "Largest Contentful Paint (LCP): 4.2 seconds. Primarily caused by unoptimized images (12 images over 500KB each).",
     recommendation: "Compress images to WebP format and implement lazy loading for below-fold images.",
     technicalDetail: "Total page weight: 8.4MB. Images account for 7.2MB of transfer size.",
-    estimatedRevenue: "Moderate SEO and conversion impact",
+    potentialImpact: "SEO ranking impact and higher bounce rate on mobile",
   },
 ];
 
@@ -166,12 +166,12 @@ export function SampleReportViewer() {
           <p>
             This report covers website health monitoring for <strong className="text-foreground">{REPORT_DATA.site}</strong> from {REPORT_DATA.dateRange}. 
             Our automated scans detected <strong className="text-critical">{REPORT_DATA.criticalIssues} critical issues</strong> that 
-            are actively preventing conversions and should be addressed immediately.
+            are actively blocking conversions and should be addressed immediately.
           </p>
           <p>
             The most severe problems affect core conversion paths: a broken contact form is blocking 100% of form submissions, 
-            and the primary call-to-action is invisible to mobile users who represent 64% of site traffic. Combined, these issues 
-            are estimated to cause <strong className="text-foreground">$5,500-$7,500 in lost revenue per week</strong>.
+            and the primary call-to-action is invisible to mobile users who represent 64% of site traffic. For a local service business 
+            receiving typical traffic volumes, these issues could result in significant lost opportunity each week.
           </p>
           <p>
             Additionally, {REPORT_DATA.warningIssues} warning-level issues were detected that degrade user experience and may impact 
@@ -224,7 +224,7 @@ export function SampleReportViewer() {
                       {issue.businessImpact}
                     </p>
                     <p className="text-sm font-semibold text-critical">
-                      {issue.estimatedRevenue}
+                      {issue.potentialImpact}
                     </p>
                   </div>
 
