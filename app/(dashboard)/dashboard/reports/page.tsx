@@ -13,35 +13,35 @@ export default function ReportsPage() {
   return (
     <>
       <AppTopbar title="Reports" />
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 p-4 md:p-6 overflow-auto">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-0 mb-4 md:mb-6">
             <div>
-              <h2 className="text-xl font-bold text-foreground">Reports</h2>
-              <p className="text-sm text-muted-foreground">Download and view historical performance reports</p>
+              <h2 className="text-lg md:text-xl font-bold text-foreground">Reports</h2>
+              <p className="text-xs md:text-sm text-muted-foreground">Download and view historical performance reports</p>
             </div>
-            <Button size="sm" className="gap-1.5">
-              <Calendar size={14} /> Generate Custom Report
+            <Button size="sm" className="gap-1.5 self-start md:self-auto">
+              <Calendar size={14} /> <span className="hidden sm:inline">Generate Report</span>
             </Button>
           </div>
 
-          <div className="grid gap-4">
+          <div className="grid gap-3 md:gap-4">
             {reports.map((report) => (
-              <div key={report.id} className="p-5 rounded-xl border border-border bg-card shadow-card hover:shadow-card-hover transition-all">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <div key={report.id} className="p-4 md:p-5 rounded-xl border border-border bg-card shadow-card hover:shadow-card-hover transition-all">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
+                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                       <FileText size={18} className="text-primary" />
                     </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-foreground">{report.title}</h3>
-                      <p className="text-xs text-muted-foreground">{report.site} · {report.type} · Generated {report.generated}</p>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-0.5">{report.title}</h3>
+                      <p className="text-xs text-muted-foreground truncate">{report.site} · {report.type} · Generated {report.generated}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4 ml-12 sm:ml-0">
                     <span className="text-xs text-muted-foreground hidden sm:block">{report.size}</span>
                     <Button variant="outline" size="sm" className="gap-1.5">
-                      <Download size={14} /> Download
+                      <Download size={14} /> <span className="hidden sm:inline">Download</span>
                     </Button>
                   </div>
                 </div>

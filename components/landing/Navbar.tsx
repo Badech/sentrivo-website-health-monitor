@@ -48,9 +48,11 @@ export function Navbar() {
               Log in
             </Button>
           </Link>
-          <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            Start Free Scan
-          </Button>
+          <Link href="/demo">
+            <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              Try Demo
+            </Button>
+          </Link>
         </div>
 
         <button
@@ -86,7 +88,9 @@ export function Navbar() {
                     Log in
                   </Button>
                 </Link>
-                <Button size="sm" className="w-full">Start Free Scan</Button>
+                <Link href="/demo" className="w-full">
+                  <Button size="sm" className="w-full">Try Demo</Button>
+                </Link>
               </div>
             </div>
           </motion.div>

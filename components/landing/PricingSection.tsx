@@ -28,7 +28,7 @@ const plans = [
     price: "Custom",
     period: "",
     description: "For large agencies and multi-location businesses.",
-    features: ["Unlimited websites", "Custom scan frequency", "All Agency features", "Dedicated support", "API access", "Custom integrations", "SLA guarantee"],
+    features: ["Unlimited websites", "Custom scan frequency", "All Agency features", "Dedicated support", "API access", "Custom integrations"],
     cta: "Contact Us",
     highlighted: false,
   },

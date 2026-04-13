@@ -15,16 +15,38 @@ export default function ScansPage() {
   return (
     <>
       <AppTopbar title="Scan History" />
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 p-4 md:p-6 overflow-auto">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-xl font-bold text-foreground">Scan History</h2>
-              <p className="text-sm text-muted-foreground">View all automated scans and their results</p>
-            </div>
+          <div className="mb-4 md:mb-6">
+            <h2 className="text-lg md:text-xl font-bold text-foreground">Scan History</h2>
+            <p className="text-xs md:text-sm text-muted-foreground">View all automated scans and their results</p>
           </div>
 
-          <div className="rounded-xl border border-border bg-card shadow-card overflow-hidden">
+          {/* Mobile: Card Layout */}
+          <div className="md:hidden space-y-3">
+            {scans.map((scan) => (
+              <div key={scan.id} className="p-4 rounded-xl border border-border bg-card shadow-card">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-start gap-2.5 min-w-0 flex-1">
+                    <ScanSearch size={14} className="text-muted-foreground shrink-0 mt-0.5" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-mono text-foreground mb-1">{scan.id}</p>
+                      <p className="text-sm font-medium text-foreground truncate">{scan.site}</p>
+                    </div>
+                  </div>
+                  <StatusPill status={scan.status} />
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+                  <div><span className="font-medium">Issues:</span> {scan.issues}</div>
+                  <div><span className="font-medium">Duration:</span> {scan.duration}</div>
+                  <div className="col-span-2"><span className="font-medium">Time:</span> {scan.time}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: Table Layout */}
+          <div className="hidden md:block rounded-xl border border-border bg-card shadow-card overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>

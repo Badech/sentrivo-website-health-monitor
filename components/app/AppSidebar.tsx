@@ -31,7 +31,7 @@ export function AppSidebar() {
   return (
     <aside
       className={cn(
-        "h-screen sticky top-0 bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-200",
+        "hidden md:flex h-screen sticky top-0 bg-sidebar border-r border-sidebar-border flex-col transition-all duration-200",
         collapsed ? "w-16" : "w-60"
       )}
     >

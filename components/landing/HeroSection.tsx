@@ -21,8 +21,8 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-8"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-          <span className="text-xs font-medium text-primary">Now monitoring 12,000+ websites</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <span className="text-xs font-medium text-primary">Private Beta • Built for Agencies</span>
         </motion.div>
 
         {/* Headline */}

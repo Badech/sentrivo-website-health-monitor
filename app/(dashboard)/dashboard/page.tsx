@@ -25,44 +25,32 @@ const weeklyTrend = [
 export default function DashboardOverview() {
   return (
     <>
-      <AppTopbar title="Dashboard" />
-      <main className="flex-1 p-6 overflow-auto bg-muted/30">
-        <div className="max-w-7xl mx-auto space-y-6">
-          {/* Context Bar */}
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">acme-corp.com</h1>
-              <p className="text-sm text-muted-foreground">Last scan: 32 minutes ago • Health Score: 87/100</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <button className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Change site
-              </button>
-            </div>
-          </div>
+      <AppTopbar title="Dashboard" showSiteContext />
+      <main className="flex-1 p-4 md:p-6 overflow-auto bg-muted/30">
+        <div className="max-w-7xl mx-auto space-y-4 md:space-y-6">
           {/* Score cards row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             {/* Health Score */}
-            <div className="p-6 rounded-xl border border-border bg-card shadow-card">
-              <div className="flex items-center justify-between mb-4">
+            <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-card">
+              <div className="flex items-center justify-between mb-3 md:mb-4">
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">Website Health</h3>
-                  <p className="text-xs text-muted-foreground">vs last week: -5 points</p>
+                  <h3 className="text-xs md:text-sm font-semibold text-foreground">Website Health</h3>
+                  <p className="text-[10px] md:text-xs text-muted-foreground">vs last week: -5 points</p>
                 </div>
                 <StatusPill status="healthy" />
               </div>
-              <div className="flex items-center gap-6">
-                <ScoreRing score={87} size={100} />
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm">
+              <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
+                <ScoreRing score={87} size={80} className="sm:w-[100px]" />
+                <div className="space-y-1.5 md:space-y-2 text-center sm:text-left">
+                  <div className="flex items-center gap-2 text-xs md:text-sm">
                     <span className="w-2 h-2 rounded-full bg-success" />
                     <span className="text-muted-foreground">139 checks passed</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-xs md:text-sm">
                     <span className="w-2 h-2 rounded-full bg-critical" />
                     <span className="text-muted-foreground">3 critical issues</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-xs md:text-sm">
                     <span className="w-2 h-2 rounded-full bg-warning" />
                     <span className="text-muted-foreground">5 warnings</span>
                   </div>
@@ -71,26 +59,26 @@ export default function DashboardOverview() {
             </div>
 
             {/* Lead Risk */}
-            <div className="p-6 rounded-xl border border-warning/20 bg-warning/5 shadow-card">
-              <div className="flex items-center justify-between mb-4">
+            <div className="p-4 md:p-6 rounded-xl border border-warning/20 bg-warning/5 shadow-card">
+              <div className="flex items-center justify-between mb-3 md:mb-4">
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">Lead Risk Score</h3>
-                  <p className="text-xs text-muted-foreground">Sample calculation</p>
+                  <h3 className="text-xs md:text-sm font-semibold text-foreground">Lead Risk Score</h3>
+                  <p className="text-[10px] md:text-xs text-muted-foreground">Sample calculation</p>
                 </div>
                 <StatusPill status="warning" label="Medium Risk" />
               </div>
-              <div className="flex items-center gap-6">
-                <ScoreRing score={62} size={100} />
-                <div className="space-y-1.5">
-                  <p className="text-sm text-muted-foreground">Estimated impact</p>
-                  <p className="text-xl font-bold text-foreground">~12 leads/week</p>
-                  <p className="text-xs text-muted-foreground">potentially affected by issues</p>
+              <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
+                <ScoreRing score={62} size={80} className="sm:w-[100px]" />
+                <div className="space-y-1 md:space-y-1.5 text-center sm:text-left">
+                  <p className="text-xs md:text-sm text-muted-foreground">Estimated impact</p>
+                  <p className="text-lg md:text-xl font-bold text-foreground">~12 leads/week</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground">potentially affected by issues</p>
                 </div>
               </div>
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 md:gap-3">
               <QuickStat icon={Globe} label="Pages Monitored" value="142" />
               <QuickStat icon={Clock} label="Last Scan" value="32m ago" />
               <QuickStat icon={TrendingUp} label="Scans This Week" value="47" />
@@ -99,43 +87,55 @@ export default function DashboardOverview() {
           </div>
 
           {/* Charts / Trend + Severity Breakdown */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4">
             {/* Weekly Trend */}
-            <div className="p-6 rounded-xl border border-border bg-card shadow-card">
+            <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-card">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-foreground">Weekly Issue Trend</h3>
-                <span className="text-xs text-muted-foreground">Last 7 days</span>
+                <div>
+                  <h3 className="text-xs md:text-sm font-semibold text-foreground">Weekly Issue Trend</h3>
+                  <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5">
+                    Avg: 6.3 issues/day • Trending: ↓12%
+                  </p>
+                </div>
+                <span className="text-xs text-muted-foreground hidden sm:block">Last 7 days</span>
               </div>
-              <div className="flex items-end gap-3 h-32">
+              <div className="flex items-end gap-2 md:gap-3 h-28 md:h-32">
                 {weeklyTrend.map((d) => (
                   <div key={d.day} className="flex-1 flex flex-col items-center gap-1">
                     <div
-                      className="w-full bg-primary/20 rounded-t transition-all"
+                      className="w-full bg-primary/20 rounded-t transition-all relative"
                       style={{ height: `${(d.issues / 10) * 100}%` }}
                     >
                       <div
                         className="w-full bg-primary rounded-t transition-all"
                         style={{ height: `${Math.min(100, (d.issues / 10) * 80)}%` }}
                       />
+                      <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-medium text-foreground">
+                        {d.issues}
+                      </span>
                     </div>
-                    <span className="text-[10px] text-muted-foreground">{d.day}</span>
+                    <span className="text-[9px] md:text-[10px] text-muted-foreground mt-1">{d.day}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Severity Breakdown */}
-            <div className="p-6 rounded-xl border border-border bg-card shadow-card">
-              <h3 className="text-sm font-semibold text-foreground mb-4">Issues by Severity</h3>
-              <div className="space-y-4">
-                <SeverityBar label="Critical" count={3} total={8} color="bg-critical" />
-                <SeverityBar label="Warning" count={5} total={8} color="bg-warning" />
-                <SeverityBar label="Info" count={12} total={20} color="bg-primary" />
+            <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-card">
+              <h3 className="text-xs md:text-sm font-semibold text-foreground mb-3 md:mb-4">Issues by Severity</h3>
+              <div className="space-y-3 md:space-y-4">
+                <SeverityBar label="Critical" count={3} total={8} color="bg-critical" priority="High impact on conversions" />
+                <SeverityBar label="Warning" count={5} total={8} color="bg-warning" priority="Medium impact" />
+                <SeverityBar label="Passed" count={134} total={142} color="bg-success" priority="All checks healthy" />
               </div>
-              <div className="mt-6 pt-4 border-t border-border">
-                <div className="flex justify-between text-sm">
+              <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-border">
+                <div className="flex justify-between text-xs md:text-sm">
                   <span className="text-muted-foreground">Total open issues</span>
                   <span className="font-semibold text-foreground">8</span>
+                </div>
+                <div className="flex justify-between text-xs md:text-sm mt-1.5">
+                  <span className="text-muted-foreground">Resolved this week</span>
+                  <span className="font-medium text-success">5</span>
                 </div>
               </div>
             </div>
@@ -186,12 +186,15 @@ function QuickStat({ icon: Icon, label, value }: { icon: any; label: string; val
   );
 }
 
-function SeverityBar({ label, count, total, color }: { label: string; count: number; total: number; color: string }) {
+function SeverityBar({ label, count, total, color, priority }: { label: string; count: number; total: number; color: string; priority?: string }) {
   return (
     <div>
-      <div className="flex justify-between text-sm mb-1.5">
-        <span className="text-muted-foreground">{label}</span>
-        <span className="font-medium text-foreground">{count}</span>
+      <div className="flex justify-between items-start mb-1.5">
+        <div className="flex-1">
+          <span className="text-xs md:text-sm text-foreground font-medium">{label}</span>
+          {priority && <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5">{priority}</p>}
+        </div>
+        <span className="font-semibold text-foreground text-sm md:text-base">{count}</span>
       </div>
       <div className="h-2 rounded-full bg-muted overflow-hidden">
         <div className={`h-full rounded-full ${color} transition-all`} style={{ width: `${(count / total) * 100}%` }} />
