@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { getAllSites, getCurrentWorkspace } from '@/lib/data';
 
+// Force dynamic rendering - this page requires database access
+export const dynamic = 'force-dynamic';
+
 const sites = [
   { name: 'acme-corp.com', health: 87, status: 'healthy' as const, issues: 3, lastScan: '32m ago', pages: 142 },
   { name: 'shopflow.io', health: 64, status: 'warning' as const, issues: 7, lastScan: '1h ago', pages: 89 },

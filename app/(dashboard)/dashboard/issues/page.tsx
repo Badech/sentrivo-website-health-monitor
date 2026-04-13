@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button';
 import { getIssues, getCurrentWorkspace, getAllSites } from '@/lib/data';
 import { IssueList } from '@/components/issues/IssueList';
 
+// Force dynamic rendering - this page requires database access
+export const dynamic = 'force-dynamic';
+
 export default async function IssuesPage() {
   // Get real issues from database
   const workspace = await getCurrentWorkspace();
