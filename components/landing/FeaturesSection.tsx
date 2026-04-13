@@ -9,8 +9,8 @@ const features = [
   { icon: Smartphone, title: "Mobile UX Checks", description: "Dedicated mobile rendering analysis and performance scoring." },
   { icon: MousePointerClick, title: "CTA Analysis", description: "Visibility, placement, and click-through assessment for every CTA." },
   { icon: FileWarning, title: "Broken Form Detection", description: "Real submission testing. Know the moment a form fails." },
-  { icon: Mail, title: "Weekly Reports", description: "Executive-ready summaries delivered to your inbox every Monday." },
-  { icon: Bell, title: "Instant Alerting", description: "Critical issues trigger immediate notifications via email and Slack." },
+  { icon: Mail, title: "Email Reports", description: "Scan summaries and issue notifications delivered to your inbox." },
+  { icon: Bell, title: "Instant Alerting", description: "Critical issues trigger immediate email notifications." },
   { icon: TrendingUp, title: "Historical Trends", description: "Track your site health over time. Spot regressions early." },
   { icon: MessageSquareText, title: "Plain-Language Summaries", description: "Business-friendly issue descriptions. No developer jargon." },
 ];

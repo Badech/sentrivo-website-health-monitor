@@ -19,7 +19,7 @@ const plans = [
     price: "Coming Soon",
     period: "",
     description: "For agencies managing multiple client portfolios.",
-    features: ["Up to 15 websites", "Daily scans", "All Beta features", "Priority support", "Advanced reporting", "Slack alerts (coming soon)"],
+    features: ["Up to 15 websites", "Daily scans", "All Beta features", "Priority support", "Team collaboration", "Advanced reporting"],
     cta: "Join Waitlist",
     highlighted: false,
   },

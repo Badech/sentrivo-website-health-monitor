@@ -60,15 +60,15 @@ const SAMPLE_ISSUES = [
 ];
 
 const SCAN_STAGES = [
-  { label: "Validating domain", detail: "Verifying DNS and SSL certificate", duration: 800 },
-  { label: "Discovering pages", detail: "Found 47 pages across sitemap and navigation", duration: 1500 },
-  { label: "Testing form submissions", detail: "Checking 12 contact forms and lead capture widgets", duration: 2000 },
-  { label: "Analyzing CTA visibility", detail: "Measuring primary action button placement and contrast", duration: 1500 },
-  { label: "Measuring mobile performance", detail: "Testing load times and responsive behavior", duration: 1800 },
-  { label: "Verifying call buttons", detail: "Checking tel: link formatting and click functionality", duration: 1200 },
-  { label: "Testing booking widgets", detail: "Validating calendar embeds and scheduling tools", duration: 1500 },
-  { label: "Checking tracking tags", detail: "Verifying GA4, Facebook Pixel, and conversion pixels", duration: 1000 },
-  { label: "Compiling results", detail: "Prioritizing issues by conversion impact", duration: 800 },
+  { label: "Validating domain", detail: "Verifying DNS and SSL certificate", duration: 800, metric: null },
+  { label: "Discovering pages", detail: "Crawling sitemap and navigation structure", duration: 1500, metric: "47 pages found" },
+  { label: "Testing form submissions", detail: "Simulating real form fills and submissions", duration: 2000, metric: "12 forms tested" },
+  { label: "Analyzing CTA visibility", detail: "Measuring button placement, contrast, and viewport position", duration: 1500, metric: "8 CTAs analyzed" },
+  { label: "Measuring mobile performance", detail: "Testing load times across device sizes", duration: 1800, metric: "LCP, FCP, CLS measured" },
+  { label: "Verifying call buttons", detail: "Checking tel: link formatting and click functionality", duration: 1200, metric: "3 phone links checked" },
+  { label: "Testing booking widgets", detail: "Validating calendar embeds and scheduling tools", duration: 1500, metric: "2 widgets tested" },
+  { label: "Checking tracking tags", detail: "Verifying analytics and conversion pixels", duration: 1000, metric: "GA4, Meta Pixel verified" },
+  { label: "Compiling results", detail: "Prioritizing issues by conversion impact", duration: 800, metric: "4 issues detected" },
 ];
 
 export function SampleScanFlow() {
@@ -164,7 +164,7 @@ export function SampleScanFlow() {
               </div>
 
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                This is a demo using sample data. Real scans coming soon.
+                This demo uses sample data to show what Sentrivo detects. Real scans available in private beta.
               </p>
             </Card>
           </motion.div>
@@ -187,15 +187,23 @@ export function SampleScanFlow() {
                 {/* Current Stage */}
                 <div className="mb-6 px-4">
                   <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-                    <p className="text-base md:text-lg font-semibold text-primary mb-1">
-                      {SCAN_STAGES[currentStage]?.label}
-                    </p>
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-base md:text-lg font-semibold text-primary">
+                        {SCAN_STAGES[currentStage]?.label}
+                      </p>
+                      {SCAN_STAGES[currentStage]?.metric && (
+                        <span className="px-2 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary">
+                          {SCAN_STAGES[currentStage]?.metric}
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-muted-foreground mb-3">
                       {SCAN_STAGES[currentStage]?.detail}
                     </p>
-                    <p className="text-xs text-muted-foreground font-mono">
-                      {checksRun} of 142 checks completed
-                    </p>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span className="font-mono">{checksRun} of 142 checks completed</span>
+                      <span className="font-mono">{Math.floor(progress)}%</span>
+                    </div>
                   </div>
                 </div>
                 
@@ -237,15 +245,22 @@ export function SampleScanFlow() {
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className={`text-sm font-medium ${
-                          i < currentStage
-                            ? "text-success"
-                            : i === currentStage
-                            ? "text-foreground"
-                            : "text-muted-foreground/60"
-                        }`}>
-                          {stage.label}
-                        </p>
+                        <div className="flex items-center gap-2">
+                          <p className={`text-sm font-medium ${
+                            i < currentStage
+                              ? "text-success"
+                              : i === currentStage
+                              ? "text-foreground"
+                              : "text-muted-foreground/60"
+                          }`}>
+                            {stage.label}
+                          </p>
+                          {i < currentStage && stage.metric && (
+                            <span className="text-[10px] text-success/70 font-mono">
+                              {stage.metric}
+                            </span>
+                          )}
+                        </div>
                         {i === currentStage && (
                           <p className="text-xs text-muted-foreground mt-0.5">
                             {stage.detail}

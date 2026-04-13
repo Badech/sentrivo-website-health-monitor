@@ -23,7 +23,7 @@ export default function DemoPage() {
               See Sentrivo in action
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Enter any URL to see a sample scan report with the types of issues Sentrivo detects
+              Watch a sample scan to see how Sentrivo detects conversion-killing issues in real-time
             </p>
           </div>
 
